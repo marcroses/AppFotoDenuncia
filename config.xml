@@ -5,7 +5,7 @@
         version   = "1.0.0">
  
 	<!-- Basic -->
-   	<name>AroundIDE</name>
+   	<name>FotoDenuncia</name>
     <description>
         Envia la teva queixa als municipis de Menorca i adjunta una fotografia
     </description>
