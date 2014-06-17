@@ -1,0 +1,187 @@
+<!doctype html>
+<html lang="ca">
+    <head>
+        <meta content="text/html;charset=utf-8" http-equiv="Content-Type">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        
+        <title>Around IDE</title>
+
+		<!-- JQUERY MOBILE -->
+        <script type="text/javascript" src="library/jquery-1.10/jquery-1.10.1.min.js"></script>
+        <script src="library/jquery-mobile/jquery.mobile-1.3.2.min.js"></script>
+        
+        <script src="phonegap.js"></script>
+        
+        <script type="text/javascript" src="js/phonegap/fastclick.js"></script>
+        <script type="text/javascript" charset="utf-8" src="js/imageresize.js"></script>
+        <script type="text/javascript" charset="utf-8" src="js/CanvasPlugin.js"></script>
+        <script type="text/javascript" charset="utf-8" src="js/phonegap/camara.js"></script>
+      
+        <!--Cridem la llibreria OpenLayers, proj4js i estils-->
+        <script type="text/javascript" src="library/OpenLayers/OpenLayers.js"></script>
+        <script type="text/javascript" src="library/OpenLayers/proj4js-combined.js"></script>        
+        <script type="text/javascript" src="library/OpenLayers/EPSG25831.js"></script>
+        
+		<!-- ESTILS -->
+        <link rel="stylesheet" href="css/jquery.mobile.structure-1.3.2.min.css" />
+        <link rel="stylesheet" href="css/cameraTest.css">
+
+        <script type="text/javascript" src="js/location.js"></script>
+		<script type="text/javascript" src="js/main.js"></script>
+		<script type="text/javascript" src="js/phonegap/json.js"></script>
+		<script type="text/javascript" src="js/cameraTest.js"></script>
+
+    </head>
+    <body onload="main()">     
+     
+        <!-- 
+        ===========================
+        PANTALLA INCIAL
+        ===========================
+		-->
+        <div id="splash" data-role="page" data-theme="c">
+            <div data-role="header" data-position="fixed" data-id="headerFixed" data-tap-toggle="false"  data-theme="b">
+                <h1>Reporta incidències</h1>
+		<a href="#credits" class="ui-btn-right" data-icon="info" data-iconpos="notext" data-rel="dialog" data-transition="fade">Cr&egrave;dits</a>
+            </div>
+            <div data-role="content" role="main" style="padding: 1px;">
+                <center>
+                    <h2>Envia'ns la teva queixa</h2>
+                    <h4>La foto den&uacute;ncia de Menorca</h4>
+                    <img id="imgLogoIni" src='img/logo.png' style="visibility: hidden;">
+                </center>
+            </div>
+            <div data-role="footer" data-position="fixed" data-id="footerFixed" data-tap-toggle="false" data-theme="b">
+                <div data-role="navbar">
+                    <ul>
+                        <li>
+                            <a class="footerMenuItem" id="tabExit0" data-icon="back" data-iconpos="top">Sortir</a>
+                        </li>
+                        <li>
+							<a href="#home" class="footerMenuItem" id="tabStart0" data-icon="home" data-iconpos="top">Iniciar</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>    
+
+	<!-- 
+        ===========================
+        HOME
+        ===========================
+	-->
+        <div id="home" data-role="page" data-theme="b">
+            <div data-role="header" data-position="fixed" data-id="headerFixed" data-tap-toggle="false"  data-theme="b">
+                <h1>Reporta incidències</h1>
+                <a href="credits.html" class="ui-btn-right" data-icon="info" data-iconpos="notext" data-rel="dialog" data-transition="fade">Cr&egrave;dits</a>
+            </div>
+
+            <div data-role="content" role="main" style="padding: 0px;text-shadow:5px 5px 5px #555555;">
+                    <img id="imgLogoMuni" src='img/fons/07000.jpg' style='max-width:100%;'>
+                    <center><div style="padding: 0px;color:#ffffff;text-shadow:5px 5px 10px black;position:absolute;top:60px;right:20px;" id="lbl_Muni_0"><font size=5>Envia'ns la teva queixa</font></div></center>
+            	
+            	    <div style="padding:15px;">
+            	       
+                        <p></p><center>Omple el formulari i envia'ns la teva queixa:<p></center>
+                        <div id="landmark-1" data-landmark-id="1">
+                            
+                            <label for="selectMunicipi"><b>Municipi</b></label>
+                            <a href="#pageMainMunicipi"  data-role="button" data-theme="b" id="selectMunicipi" data-rel="dialog" data-transition="fade"><span class="ui-button-text">Selecciona un municipi...</span></a>
+                            
+                            <input type="hidden" id="currentMunicipi" name="currentMunicipi">
+                            
+                            <label for="Nom"><b>Nom</b></label>
+                            <input type="text" id="Nom" name="Nom"> 
+                            
+                            <!--
+                            <label for="Domicili"><b>Domicili:</b></label>
+                            <input type="text" id="Domicili" name="Domicili">       
+                            
+                            <label for="Poblacio"><b>Poblacio:</b></label>
+                            <input type="text" id="Poblacio" name="Poblacio"> 
+                            
+                            <label for="CPostal"><b>Codi Postal:</b></label>
+                            <input type="text" id="CPostal" name="CPostal">                                              
+    
+                            <label for="Telefon"><b>Telefon:</b></label>
+                            <input type="text" id="Telefon" name="Telefon">   
+                            -->
+                            <label for="NIF"><b>NIF:</b></label>
+                            <input type="text" id="NIF" name="NIF" value="">                         
+                                                    
+                            <label for="Email"><b>Email:</b></label>
+                            <input type="email" id="Mail" name="Mail" value="">        
+                            
+                            <label for="IdArea" class="select" data-theme="b"><b>Area de l'ajuntament:</b></label>
+                            <select name="IdArea" id="IdArea">
+                            </select>                                                
+                                
+                            <label for="Texte"><b>Comentari:</b></label>
+                            <textarea id="Texte" name="Texte" cols="30" rows="10"></textarea>
+                                
+                            <label for="largeImage"><b>Fotografia:</b></label><p></p>
+                            <center>
+    							<img style="max-width:100%;" id="largeImage" src="" />
+    
+                                <canvas id="canvas" style="display:none;"></canvas>
+                                <img id="canvasImg" style="max-width:100%;">
+    
+                            </center>
+    
+    		               	<div id="lblPercent"></div>
+    		                <button onclick="takePicture();" data-theme="b">Fes una foto</button>
+    		                <button onclick="selectPicture();" data-theme="b">Selecciona una foto</button>
+    		                <hr>
+    		                <button data-theme="e" onclick="upload()">Envia queixa</button>
+    		                <span id="camera_status" style="width:100%;"></span>
+    		                <textarea id="codi64" style="visibility: hidden;"></textarea>
+    		                
+    					</div>	                
+
+                    </div>            
+            </div>
+
+            <div data-role="footer" data-position="fixed" data-id="footerFixed" data-tap-toggle="false" data-theme="b">
+        		<div data-role="navbar">
+        		    <ul>
+        		        <li>
+        		            <a class="footerMenuItem" id="tabExit1"  data-icon="back" data-iconpos="top">Sortir</a>
+        		        </li>
+        		    </ul>
+        		</div>
+            </div>
+            
+        </div>  
+        
+        <!--
+            PAGE MUNICIPI
+        -->
+        <div id="pageMainMunicipi" data-role="page" data-theme="b">
+            <div data-role="header" data-position="fixed" data-id="headerFixed" data-tap-toggle="false"  data-theme="b">
+                <h1>Reporta incidències</h1>
+            </div>
+
+            <div data-role="content" style="padding: 10px;">
+                <div style="padding:12px;">
+                    <div id="lblMunicipi" style="width:100%;text-align:center;padding:0px;color:#000000;text-shadow:5px 5px 10px #222222;">Selecciona un municipi:</div><p></p>
+                        <div data-role="controlgroup" style="padding:5px;">
+                            <ul id="llistaMainMunicipis" data-role="listview" data-theme="c">
+                                <li key="07002_Alaior" ><a href=""><img src='img/fons/07002_li.jpg'/><h3>Alaior</h3></a></li>
+                                <li key="07015_Ciutadella" ><a href=""><img src='img/fons/07015_li.jpg'/><h3>Ciutadella</h3></a></li>
+                                <li key="07023_Ferreries" ><a href=""><img src='img/fons/07023_li.jpg'/><h3>Ferreries</h3></a></li>
+                                <li key="07032_Maó" ><a href=""><img src='img/fons/07032_li.jpg'/><h3>Ma&oacute;</h3></a></li>
+                                <li key="07037_Es Mercadal" ><a href=""><img src='img/fons/07037_li.jpg'/><h3>Es Mercadal</h3></a></li>
+                                <li key="07052_Sant Lluís" ><a href=""><img src='img/fons/07052_li.jpg'/><h3>Sant Llu&iacute;s</h3></a></li>
+                                <li key="07064_Es Castell" ><a href=""><img src='img/fons/07064_li.jpg'/><h3>Es Castell</h3></a></li>
+                                <li key="07067_Es Migjorn Gran" ><a href=""><img src='img/fons/07067_li.jpg'/><h3>Es Migjorn Gran</h3></a></li>
+                            </ul>
+                        </div>
+                </div>  
+            </div>
+        </div>           
+
+
+    </body>
+</html>
+
